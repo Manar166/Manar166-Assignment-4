@@ -38,9 +38,10 @@ namespace Assignment4
             int totalDuration = GetTotalDuration(sessionDurations);
             Console.WriteLine($"Total Duration: {totalDuration} minutes");
 
-            AverageDuration(sessionDurations);
-            LongestDuration(sessionDurations);
-            ShortestDuration(sessionDurations);
+            GetAverageDuration(sessionDurations);
+            GetLongestDuration(sessionDurations);
+            GetShortestDuration(sessionDurations);
+            CopySessionDurations(sessionDurations);
 
 
 
@@ -233,14 +234,14 @@ namespace Assignment4
             return totalDuration;
         }
 
-        public static void AverageDuration(int[] sessionsDurations )
+        public static void GetAverageDuration(int[] sessionsDurations )
         {
             int totalDuration = GetTotalDuration(sessionsDurations);
             int averageDuration = totalDuration / sessionsDurations.Length;
             Console.WriteLine($"Average Duration: {averageDuration} minutes");
         }
 
-        public static void ShortestDuration(int[] sessionsDurations)
+        public static void GetShortestDuration(int[] sessionsDurations)
         { 
             int shortestDuration = sessionsDurations[0];
             foreach (int duration in sessionsDurations)
@@ -255,7 +256,7 @@ namespace Assignment4
             Console.WriteLine($"Shortest Duration: {shortestDuration} minutes");
         }
 
-        public static void LongestDuration(int[] sessionDuration)
+        public static void GetLongestDuration(int[] sessionDuration)
         {
             int longestDuration = sessionDuration[0];
             foreach (var duration in sessionDuration)
@@ -267,6 +268,20 @@ namespace Assignment4
             }
             Console.WriteLine($"Longest Duration: {longestDuration} minutes");
         }
+
+        public static void CopySessionDurations(int[] sourceArray)
+        {
+            int[] copyArray = new int[sourceArray.Length];
+            Array.Copy(sourceArray, copyArray, sourceArray.Length);
+            copyArray.Sort();
+            foreach (var duration in copyArray)
+            {
+                Console.WriteLine(duration);
+            }
+
+        }
+
+
 
 
 
