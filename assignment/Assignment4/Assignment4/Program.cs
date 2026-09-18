@@ -34,7 +34,13 @@ namespace Assignment4
             //string ? searchCondition = Console.ReadLine();
             //FindSessionName(sessionNames, searchCondition);
 
-            CopyArray(sessionNames);
+            // CopyArray(sessionNames);
+            int totalDuration = GetTotalDuration(sessionDurations);
+            Console.WriteLine($"Total Duration: {totalDuration} minutes");
+
+            AverageDuration(sessionDurations);
+            LongestDuration(sessionDurations);
+            ShortestDuration(sessionDurations);
 
 
 
@@ -65,7 +71,7 @@ namespace Assignment4
                                     240,
                                     180
                 };
-
+        #region sessionDetails
         public static void DisplaySessions(string[] sessionNames, DateTime[] sessionDates, int[] sessionDurations)
         {
             for (int i = 0; i < sessionNames.Length; i++)
@@ -190,7 +196,7 @@ namespace Assignment4
         }
 
 
-        public static void CopyArray(string[] sourceArray )
+        public static void CopyArray(string[] sourceArray)
         {
             string[] destinationArray = new string[sourceArray.Length];
             Array.Copy(sourceArray, destinationArray, sourceArray.Length);
@@ -199,18 +205,77 @@ namespace Assignment4
             Console.WriteLine("copied array:");
             foreach (var session in destinationArray)
             {
-                
+
                 Console.WriteLine(session);
             }
 
             Console.WriteLine(" source array:");
             foreach (var session in sourceArray)
             {
-                
+
                 Console.WriteLine(session);
             }
 
         }
 
+        #endregion
+
+        #region Part5
+
+        public static int GetTotalDuration(int[] sessionDurations)
+        {
+            int totalDuration = 0;
+            foreach (int duration in sessionDurations)
+            {
+                totalDuration += duration;
+            }
+
+            return totalDuration;
+        }
+
+        public static void AverageDuration(int[] sessionsDurations )
+        {
+            int totalDuration = GetTotalDuration(sessionsDurations);
+            int averageDuration = totalDuration / sessionsDurations.Length;
+            Console.WriteLine($"Average Duration: {averageDuration} minutes");
+        }
+
+        public static void ShortestDuration(int[] sessionsDurations)
+        { 
+            int shortestDuration = sessionsDurations[0];
+            foreach (int duration in sessionsDurations)
+            {
+                if (duration < shortestDuration)
+                {
+                    shortestDuration = duration;
+
+
+                }
+            }
+            Console.WriteLine($"Shortest Duration: {shortestDuration} minutes");
+        }
+
+        public static void LongestDuration(int[] sessionDuration)
+        {
+            int longestDuration = sessionDuration[0];
+            foreach (var duration in sessionDuration)
+            {
+                if(duration > longestDuration)
+                {
+                    longestDuration = duration;
+                }
+            }
+            Console.WriteLine($"Longest Duration: {longestDuration} minutes");
+        }
+
+
+
+
+
+        #endregion
+
+
+
     }
 }
+
