@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using static System.Collections.Specialized.BitVector32;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Assignment4
 {
@@ -35,15 +36,41 @@ namespace Assignment4
             //FindSessionName(sessionNames, searchCondition);
 
             // CopyArray(sessionNames);
-            int totalDuration = GetTotalDuration(sessionDurations);
-            Console.WriteLine($"Total Duration: {totalDuration} minutes");
+            //int totalDuration = GetTotalDuration(sessionDurations);
+            //Console.WriteLine($"Total Duration: {totalDuration} minutes");
 
-            GetAverageDuration(sessionDurations);
-            GetLongestDuration(sessionDurations);
-            GetShortestDuration(sessionDurations);
-            CopySessionDurations(sessionDurations);
+            //GetAverageDuration(sessionDurations);
+            //GetLongestDuration(sessionDurations);
+            //GetShortestDuration(sessionDurations);
+            //CopySessionDurations(sessionDurations);
 
+            //int number = 10;
+            //Console.WriteLine($"Before PassByReference: {number}");
+            //PassByReference(ref number);
+            //Console.WriteLine($"After PassByReference: {number}");
 
+            //Console.WriteLine("Enter Session Name");
+            //string searchName = Console.ReadLine();
+            //OutDemo(sessionNames,  sessionDurations,  searchName,out SessionIndex,out SessionDuration);
+
+            //int[] arrayX = new int[6] { 8, 9, 6, 4, 4, 6 };
+            //Console.WriteLine("Before ArryDemo:");
+            //foreach (var item in arrayX)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //ArryDemo(arrayX);
+            //Console.WriteLine("After ArryDemo:");
+            //foreach (var item in arrayX)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            CalculateTotalDuration(120, 180);
+            CalculateTotalDuration(120, 180, 240);
+            CalculateTotalDuration(60, 90, 120, 180, 240);
+
+            SessionDateDetails(sessionNames, sessionDurations, sessionDates);
 
         }
 
@@ -234,7 +261,7 @@ namespace Assignment4
             return totalDuration;
         }
 
-        public static void GetAverageDuration(int[] sessionsDurations )
+        public static void GetAverageDuration(int[] sessionsDurations)
         {
             int totalDuration = GetTotalDuration(sessionsDurations);
             int averageDuration = totalDuration / sessionsDurations.Length;
@@ -242,7 +269,7 @@ namespace Assignment4
         }
 
         public static void GetShortestDuration(int[] sessionsDurations)
-        { 
+        {
             int shortestDuration = sessionsDurations[0];
             foreach (int duration in sessionsDurations)
             {
@@ -261,7 +288,7 @@ namespace Assignment4
             int longestDuration = sessionDuration[0];
             foreach (var duration in sessionDuration)
             {
-                if(duration > longestDuration)
+                if (duration > longestDuration)
                 {
                     longestDuration = duration;
                 }
@@ -281,8 +308,43 @@ namespace Assignment4
 
         }
 
+        public static void PassByReference(ref int number)
+        {
+            number = 999;
+        }
+
+        static int SessionIndex;
+        static int SessionDuration;
+
+        public static void OutDemo(string[] sessionNames, int[] sessionDuration, string searchName, out int index, out int duration)
+        {
+            index = Array.IndexOf(sessionNames, searchName);
+            if (index == -1)
+            {
+                duration = -1;
+                index = -1;
+                Console.WriteLine("Session not found.");
+            }
+            else
+            {
+                duration = sessionDuration[index];
+
+                Console.WriteLine($"Session: {index}");
+                Console.WriteLine($"Duration: {duration} minutes");
+            }
 
 
+
+        }
+
+
+
+        public static void ArryDemo(int[] arrayY)
+        {
+            arrayY[3] = 999;
+
+
+        }
 
 
 
@@ -290,7 +352,44 @@ namespace Assignment4
         #endregion
 
 
+        public static void CalculateTotalDuration(params int[] durations)
+        {
+            int totalDeuration = 0;
+            foreach(var duration in durations)
+            {
+                totalDeuration += duration;
+            }
+            Console.WriteLine($"Total Duration: {totalDeuration} minutes");
 
+        }
+
+        public static void SessionDateDetails(string[] sessionNames, int[] sessionDurations, DateTime[] sessionDate)
+        {
+            Console.WriteLine("Enter Session Name");
+            string searchName = Console.ReadLine();
+            //if(!Array.Exists(sessionNames, x => x.Equals(searchName, StringComparison.OrdinalIgnoreCase)))
+            //{
+            //    Console.WriteLine("Session not found.");
+            //    return;
+            //}
+           int index=Array.FindIndex(sessionNames,x=>x.Equals(searchName, StringComparison.OrdinalIgnoreCase));
+            if (index == -1)
+            {
+                Console.WriteLine("Session not found.");
+                return;
+            }
+
+            Console.WriteLine($"Session: {sessionNames[index]}");
+            Console.WriteLine($"Date: {sessionDate[index].ToString("dd/MMMM/yyyy", System.Globalization.CultureInfo.InvariantCulture)}");
+            Console.WriteLine($"Date: {sessionDate[index].Day}");
+            Console.WriteLine($"Date: {sessionDate[index].Month}");
+            Console.WriteLine($"Date: {sessionDate[index].Year}");
+            Console.WriteLine($"Start Time: {sessionDate[index].ToString("hh:mm tt", new CultureInfo("en-US"))}");
+            Console.WriteLine($"Duration: {sessionDurations[index]} minutes");
+            DateTime endTime = sessionDate[index].AddMinutes(sessionDurations[index]);
+            Console.WriteLine($"End Time: {endTime.ToString("hh:mm tt", new CultureInfo("en-US"))}");
+
+        }
     }
 }
 
