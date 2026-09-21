@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Text;
 using static System.Collections.Specialized.BitVector32;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -66,13 +68,27 @@ namespace Assignment4
             //    Console.WriteLine(item);
             //}
 
-            CalculateTotalDuration(120, 180);
-            CalculateTotalDuration(120, 180, 240);
-            CalculateTotalDuration(60, 90, 120, 180, 240);
+            //CalculateTotalDuration(120, 180);
+            //CalculateTotalDuration(120, 180, 240);
+            //CalculateTotalDuration(60, 90, 120, 180, 240);
 
-            SessionDateDetails(sessionNames, sessionDurations, sessionDates);
+            //SessionDateDetails(sessionNames, sessionDurations, sessionDates);
 
+            //DateDifference();
+            //  PastAndUpcomingSessions();
+            //FindNextSession();
+            //DisplayselectedSession();
+            //var Date =ReadAndValidateDate();
+            //Console.WriteLine(Date.ToString(new CultureInfo("en-US")));
+
+            //MenuInput();
+            // InvalidArrayIndex(sessionNames);
+
+            //ValidateSessionDuration();
+            //  BuildScheduleReport();
+            ReportUsingStringBuilder();
         }
+      
 
         static string[] sessionNames =
                                  {
@@ -308,6 +324,8 @@ namespace Assignment4
 
         }
 
+        #endregion
+
         public static void PassByReference(ref int number)
         {
             number = 999;
@@ -348,10 +366,6 @@ namespace Assignment4
 
 
 
-
-        #endregion
-
-
         public static void CalculateTotalDuration(params int[] durations)
         {
             int totalDeuration = 0;
@@ -390,6 +404,260 @@ namespace Assignment4
             Console.WriteLine($"End Time: {endTime.ToString("hh:mm tt", new CultureInfo("en-US"))}");
 
         }
+
+        //part 10
+        public static void DateDifference()
+        {
+            Console.WriteLine("Enter the First Session Name");
+            string firstSessionName = Console.ReadLine();
+            while (!Array.Exists(sessionNames,x=>x.Equals(firstSessionName, StringComparison.OrdinalIgnoreCase)))
+            {
+                Console.WriteLine("Enter Valid Session Name.");
+                Console.WriteLine("Enter the First Session Name");
+
+                firstSessionName = Console.ReadLine();
+            }
+            Console.WriteLine("Enter the Second Session Name");
+            string secondSessionName = Console.ReadLine();
+            while (!Array.Exists(sessionNames, x => x.Equals(secondSessionName, StringComparison.OrdinalIgnoreCase)))
+            {
+                Console.WriteLine("Enter Valid Session Name.");
+                Console.WriteLine("Enter the Second Session Name");
+                secondSessionName = Console.ReadLine();
+            }
+
+          int firstSessionIndex = Array.FindIndex(sessionNames, x => x.Equals(firstSessionName, StringComparison.OrdinalIgnoreCase));
+          int secondSessionIndex = Array.FindIndex(sessionNames, x => x.Equals(secondSessionName, StringComparison.OrdinalIgnoreCase));
+
+            TimeSpan dateDifference = sessionDates[firstSessionIndex] - sessionDates[secondSessionIndex];
+            Console.WriteLine($"Difference:\n{dateDifference.Days}days \n{dateDifference.Hours}Hours ");
+
+        }
+        //part11
+        public static void PastAndUpcomingSessions() 
+        {
+            for (int i=0;i<sessionDates.Length;i++)
+            {
+                if (DateTime.Now < sessionDates[i])
+                {
+                    Console.WriteLine($"{sessionNames[i]} upcoming");
+
+                }
+                else
+                {
+                    Console.WriteLine($"{sessionNames[i]} Past");
+
+                }
+
+            }
+        }
+
+        //part 12
+        public static void FindNextSession()
+        {
+            DateTime Now = DateTime.Now;
+            int index = -1;
+            var minDifference = TimeSpan.MaxValue;
+            for (int i = 0; i < sessionDates.Length; i++)
+            {
+                
+                if (Now > sessionDates[i])
+                {
+                    continue;
+
+                }
+                var diference = sessionDates[i] - Now;
+                
+                
+
+                if (diference < minDifference)
+                {
+                    minDifference = diference;
+                    index = i;
+
+                }
+
+                
+
+
+
+
+            }
+            Console.WriteLine($"next session: {sessionNames[index]}");
+            Console.WriteLine($"{sessionDates[index].ToString("dd/MMMM/yyyy", new CultureInfo("en-US"))} ");
+            Console.WriteLine($"{sessionDates[index].ToString("hh:mm tt", new CultureInfo("en-US"))}");
+
+
+            Console.WriteLine($"Time Remaining : \n {(sessionDates[index] - Now).Days}days");
+            Console.WriteLine($" {(sessionDates[index] - Now).Hours}hours");
+
+
+
+
+        }
+
+
+        //part 13 
+        public static void DisplayselectedSession()
+        {
+          Console.WriteLine( sessionDates[0].ToString("yyyy-MM-dd"));
+          Console.WriteLine( sessionDates[0].ToString("dd/MM/yyyy"));
+          Console.WriteLine( sessionDates[0].ToString("dd/MMMM/yyyy",new CultureInfo("en-US")));
+          Console.WriteLine( sessionDates[0].ToString("dddd,dd/MMMM/yyyy",new CultureInfo("en-US")));
+          Console.WriteLine( sessionDates[0].ToString("hh:mm tt",new CultureInfo("en-US")));
+            
+        }
+
+        //part 14
+
+        public static DateTime ReadAndValidateDate()
+        {
+            DateTime result;
+            bool success;
+
+            do
+            {
+                Console.WriteLine("Enter the Date yyyy-MM-dd HH:mm");
+
+                success = DateTime.TryParseExact(
+                    Console.ReadLine(),
+                    "yyyy-MM-dd HH:mm",
+                    new CultureInfo("en-US"),
+                    DateTimeStyles.None,
+                    out result
+                );
+
+                if (!success)
+                {
+                    Console.WriteLine("Wrong format");
+                }
+
+            } while (!success);
+            
+           return  result;
+
+        }
+
+        //part 15
+
+        public static void MenuInput()
+        {
+            Console.WriteLine("Enter Number");
+            int? result;
+            while (true)
+            {
+                try
+                {
+                    result = int.Parse(Console.ReadLine());
+                    Console.WriteLine($"Valid Number {result}");
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine($"{ex.Message}");
+                }
+
+
+            }
+        }
+
+        //part 16
+        public static void InvalidArrayIndex(string[] sessionNames)
+        {
+            Console.WriteLine("Enter the Index");
+            bool success = int.TryParse(Console.ReadLine(), out int index);
+            if (!success)
+            { Console.WriteLine("Enter Valid Index");
+                return; 
+            }
+
+                try
+                {
+                Console.WriteLine(sessionNames[index]);
+
+
+
+
+                }
+                catch (IndexOutOfRangeException ex)
+                {
+                Console.WriteLine(ex.Message);
+                 }
+            
+        }
+
+        public static void ValidateSessionDuration()
+        {
+            Console.WriteLine("Enter duration ");
+            try
+            {
+
+
+                int duration = int.Parse(Console.ReadLine());
+
+                if (duration <= 0)
+                {
+                    throw new ArgumentException();
+
+                }
+                else
+                Console.WriteLine("Duration accepted");
+
+
+
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            finally
+            {
+                Console.WriteLine("Input operation finished.");
+            }
+
+            
+
+
+        }
+
+
+        public static void BuildScheduleReport()
+        {
+            string result = "";
+            for (int i = 0; i < sessionNames.Length;i++)
+            {
+                result += sessionNames[i] + " - " + sessionDates[i].ToString("dd/MM/yyyy hh:mm tt", new CultureInfo("en-US"))
+                    + " - " + sessionDurations[i] + " minutes \n";
+
+            }
+            Console.WriteLine(result);
+            
+        }
+
+
+        public static void ReportUsingStringBuilder()
+        {
+            StringBuilder result = new StringBuilder("");
+            for (int i = 0; i < sessionNames.Length; i++)
+            {
+                result.Append(sessionNames[i]) ;
+                result.Append(" - ") ;
+                result.Append(sessionDates[i].ToString("dd/MM/yyyy hh:mm tt", new CultureInfo("en-US")));
+                result.Append(" - ");
+                result.Append(sessionDurations[i]);
+                result.Append( " minutes \n");
+
+            }
+            Console.WriteLine(result);
+
+        }
+
+
     }
 }
 
