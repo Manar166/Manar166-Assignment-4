@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Assignment4.StringBenchmark-20260922-112036</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.9457/25H2/2025Update/HudsonValley2)
+13th Gen Intel Core i7-13620H 2.40GHz, 1 CPU, 16 logical and 10 physical cores
+.NET SDK 10.0.401
+  [Host]     : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3 [AttachedDebugger]
+  DefaultJob : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method            </th><th>Iterations</th><th>Mean       </th><th>Error      </th><th>StdDev      </th><th>Median     </th><th>Gen0   </th><th>Gen1   </th><th>Gen2   </th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>BuildScheduleReport</td><td>100</td><td>29.968 &mu;s</td><td>0.3141 &mu;s</td><td>0.2938 &mu;s</td><td>29.925 &mu;s</td><td>34.8206</td><td>0.7935</td><td>-</td><td>426.45 KB</td>
+</tr><tr><td>ReportUsingStringBuilder</td><td>100</td><td>1.728 &mu;s</td><td>0.2023 &mu;s</td><td>0.5964 &mu;s</td><td>1.868 &mu;s</td><td>1.6174</td><td>0.0696</td><td>-</td><td>19.81 KB</td>
+</tr><tr><td>BuildScheduleReport</td><td>1000</td><td>2,320.852 &mu;s</td><td>27.8034 &mu;s</td><td>23.2171 &mu;s</td><td>2,326.243 &mu;s</td><td>3625.0000</td><td>675.7813</td><td>324.2188</td><td>42058.59 KB</td>
+</tr><tr><td>ReportUsingStringBuilder</td><td>1000</td><td>63.935 &mu;s</td><td>3.7682 &mu;s</td><td>10.5042 &mu;s</td><td>67.989 &mu;s</td><td>26.9775</td><td>26.9775</td><td>26.9775</td><td>169.01 KB</td>
+</tr><tr><td>BuildScheduleReport</td><td>10000</td><td>447,725.669 &mu;s</td><td>8,923.1183 &mu;s</td><td>8,763.6953 &mu;s</td><td>447,495.550 &mu;s</td><td>1039000.0000</td><td>1036000.0000</td><td>1036000.0000</td><td>4200203.07 KB</td>
+</tr><tr><td>ReportUsingStringBuilder</td><td>10000</td><td>614.173 &mu;s</td><td>33.2376 &mu;s</td><td>91.5461 &mu;s</td><td>646.312 &mu;s</td><td>249.5117</td><td>249.5117</td><td>249.5117</td><td>1694.01 KB</td>
+</tr><tr><td>BuildScheduleReport</td><td>100000</td><td>97,317,226.451 &mu;s</td><td>7,256,199.5519 &mu;s</td><td>21,395,069.6485 &mu;s</td><td>83,146,883.500 &mu;s</td><td>28009000.0000</td><td>27989000.0000</td><td>27989000.0000</td><td>419936704.93 KB</td>
+</tr><tr><td>ReportUsingStringBuilder</td><td>100000</td><td>8,500.593 &mu;s</td><td>168.8884 &mu;s</td><td>313.0455 &mu;s</td><td>8,473.863 &mu;s</td><td>1375.0000</td><td>1351.5625</td><td>687.5000</td><td>16853 KB</td>
+</tr></tbody></table>
+</body>
+</html>
