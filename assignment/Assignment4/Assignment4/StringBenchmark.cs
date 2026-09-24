@@ -34,7 +34,7 @@ namespace Assignment4
         //                            240,
         //                            180
         //        };
-        [Params(100, 1000, 10000, 100000)]
+        [Params(10,100, 1000, 10000, 100000)]
         public int Iterations;
 
 
