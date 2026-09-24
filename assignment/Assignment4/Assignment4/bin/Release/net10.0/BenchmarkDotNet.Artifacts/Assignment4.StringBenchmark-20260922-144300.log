@@ -1,0 +1,41 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 8 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet  restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1/" /p:OutDir="D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1\bin\Release\net10.0/" /p:OutputPath="D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1\bin\Release\net10.0/" /p:PublishDir="D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1\publish/" in D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1
+// command took 2.11 sec and exited with 0
+// start dotnet  build -c Release --no-restore --nodeReuse:false /p:UseSharedCompilation=false /p:Deterministic=true /p:Optimize=true /p:ArtifactsPath="D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1/" /p:OutDir="D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1\bin\Release\net10.0/" /p:OutputPath="D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1\bin\Release\net10.0/" /p:PublishDir="D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1\publish/" --output "D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1\bin\Release\net10.0/" in D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1
+// command took 4.51 sec and exited with 0
+// ***** Done, took 00:00:06 (6.72 sec)   *****
+// Found 8 benchmarks:
+//   StringBenchmark.BuildScheduleReport: DefaultJob [Iterations=100]
+//   StringBenchmark.ReportUsingStringBuilder: DefaultJob [Iterations=100]
+//   StringBenchmark.BuildScheduleReport: DefaultJob [Iterations=1000]
+//   StringBenchmark.ReportUsingStringBuilder: DefaultJob [Iterations=1000]
+//   StringBenchmark.BuildScheduleReport: DefaultJob [Iterations=10000]
+//   StringBenchmark.ReportUsingStringBuilder: DefaultJob [Iterations=10000]
+//   StringBenchmark.BuildScheduleReport: DefaultJob [Iterations=100000]
+//   StringBenchmark.ReportUsingStringBuilder: DefaultJob [Iterations=100000]
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: High performance)
+// **************************
+// Benchmark: StringBenchmark.BuildScheduleReport: DefaultJob [Iterations=100]
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet Assignment4-DefaultJob-1.dll --anonymousPipes 1484 1480 --benchmarkName "Assignment4.StringBenchmark.BuildScheduleReport(Iterations: 100)" --job Default --benchmarkId 0 in D:\Simulation\Assignment 4\Manar166-Assignment-4\assignment\Assignment4\Assignment4\bin\Release\net10.0\Assignment4-DefaultJob-1\bin\Release\net10.0
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+// GC=Concurrent Workstation
+// HardwareIntrinsics=AVX2+BMI1+BMI2+F16C+FMA+LZCNT+MOVBE,AVX,SSE3+SSSE3+SSE4.1+SSE4.2+POPCNT,X86Base+SSE+SSE2,AES+PCLMUL,AvxVnni,SERIALIZE VectorSize=256
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 169700.00 ns, 169.7000 us/op
+WorkloadJitting  1: 1 op, 399700.00 ns, 399.7000 us/op
+
+OverheadJitting  2: 16 op, 338200.00 ns, 21.1375 us/op
+WorkloadJitting  2: 16 op, 2584100.00 ns, 161.5063 us/op
+
+WorkloadPilot    1: 16 op, 135710
