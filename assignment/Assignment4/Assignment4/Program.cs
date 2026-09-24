@@ -13,78 +13,78 @@ namespace Assignment4
         static void Main(string[] args)
         {
 
-            //   DisplaySessions(sessionNames, sessionDates, sessionDurations);
+            DisplaySessions(sessionNames, sessionDates, sessionDurations);
 
 
 
-            //    SearchBySessionName(sessionNames, sessionDates, sessionDurations);
+            SearchBySessionName(sessionNames, sessionDates, sessionDurations);
 
 
 
-            //SortSessionNames(sessionNames);
-            //ReverseSessionNames(sessionNames);
-            //FindSessionIndex(sessionNames);
-            //IsSessionNameExsist(sessionNames);
+            SortSessionNames(sessionNames);
+            ReverseSessionNames(sessionNames);
+            FindSessionIndex(sessionNames);
+            IsSessionNameExsist(sessionNames);
 
 
-            //FindSessionName(sessionNames);
+            FindSessionName(sessionNames);
 
-            //CopyArray(sessionNames);
-            //int totalDuration = GetTotalDuration(sessionDurations);
-            //Console.WriteLine($"Total Duration: {totalDuration} minutes");
+            CopyArray(sessionNames);
+            int totalDuration = GetTotalDuration(sessionDurations);
+            Console.WriteLine($"Total Duration: {totalDuration} minutes");
 
-            //GetAverageDuration(sessionDurations);
-            //GetLongestDuration(sessionDurations);
-            //GetShortestDuration(sessionDurations);
-            //CopySessionDurations(sessionDurations);
+            GetAverageDuration(sessionDurations);
+            GetLongestDuration(sessionDurations);
+            GetShortestDuration(sessionDurations);
+            CopySessionDurations(sessionDurations);
 
-            //int number = 10;
-            //Console.WriteLine($"Before PassByReference: {number}");
-            //PassByReference(ref number);
-            //Console.WriteLine($"After PassByReference: {number}");
-
-
-            //OutDemo(sessionNames, sessionDurations, out SessionIndex, out SessionDuration);
-
-            //int[] arrayX = new int[6] { 8, 9, 6, 4, 4, 6 };
-            //Console.WriteLine("Before ArryDemo:");
-            //foreach (var item in arrayX)
-            //{
-            //    Console.WriteLine(item);
-            //}
-            //ArryDemo(arrayX);
-            //Console.WriteLine("After ArryDemo:");
-            //foreach (var item in arrayX)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-            //CalculateTotalDuration(120, 180);
-            //CalculateTotalDuration(120, 180, 240);
-            //CalculateTotalDuration(60, 90, 120, 180, 240);
-
-            //SessionDateDetails(sessionNames, sessionDurations, sessionDates);
-
-            //DateDifference();
-            //PastAndUpcomingSessions();
-            //FindNextSession();
-            //DisplayselectedSession();
-
-            //var Date = ReadAndValidateDate();
-            //Console.WriteLine(Date.ToString(new CultureInfo("en-US")));
-
-            //MenuInput();
-            //InvalidArrayIndex(sessionNames);
+            int number = 10;
+            Console.WriteLine($"Before PassByReference: {number}");
+            PassByReference(ref number);
+            Console.WriteLine($"After PassByReference: {number}");
 
 
+            OutDemo(sessionNames, sessionDurations, out SessionIndex, out SessionDuration);
 
-            //BuildScheduleReport();
-            //ReportUsingStringBuilder();
+            int[] arrayX = new int[6] { 8, 9, 6, 4, 4, 6 };
+            Console.WriteLine("Before ArryDemo:");
+            foreach (var item in arrayX)
+            {
+                Console.WriteLine(item);
+            }
+            ArryDemo(arrayX);
+            Console.WriteLine("After ArryDemo:");
+            foreach (var item in arrayX)
+            {
+                Console.WriteLine(item);
+            }
+
+            CalculateTotalDuration(120, 180);
+            CalculateTotalDuration(120, 180, 240);
+            CalculateTotalDuration(60, 90, 120, 180, 240);
+
+            SessionDateDetails(sessionNames, sessionDurations, sessionDates);
+
+            DateDifference();
+            PastAndUpcomingSessions();
+            FindNextSession();
+            DisplayselectedSession();
+
+            var Date = ReadAndValidateDate();
+            Console.WriteLine(Date.ToString(new CultureInfo("en-US")));
+
+            MenuInput();
+            InvalidArrayIndex(sessionNames);
+
+
+
+            BuildScheduleReport();
+            ReportUsingStringBuilder();
 
 
             BenchmarkRunner.Run<StringBenchmark>();
 
-            //ShowMenu();
+            ShowMenu();
         }
       
 
